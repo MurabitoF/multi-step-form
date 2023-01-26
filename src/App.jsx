@@ -1,10 +1,14 @@
 
 import React from 'react'
+import './app.sass'
+import FormControl from './components/FormControl'
+import Sidebar from './components/Sidebar'
 
 function App () {
   return (
     <main>
-      <h1>App</h1>
+      <Sidebar />
+      <FormControl />
     </main>
   )
 }
