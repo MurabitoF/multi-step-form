@@ -17,15 +17,13 @@ const SelectPlan = ({ onSubmit, initialState, setStage }) => {
     setStage()
   }
 
-  const onSubmit2 = (data) => (console.log(data))
-
   return (
     <section className='form-control'>
       <h1>Select your plan</h1>
       <p className='form-description'>
         You have the option of monthly or yearly billing.
       </p>
-      <form onSubmit={handleSubmit(onSubmit2)}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <fieldset className='form-cards'>
           <InputCard type='radio' {...register('planSelected')} value='arcade'>
             <CardContent title='Arcade' price={{ monthly: 9, yearly: 90 }} isYearly={isYearly} />

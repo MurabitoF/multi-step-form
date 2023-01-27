@@ -24,6 +24,8 @@ const FormControl = ({ stage, setStage }) => {
     setStage(prev => (prev + 1))
   }
 
+  console.log(formData)
+
   if (stage === 2) {
     return (
       <div className='form-control-container'>
