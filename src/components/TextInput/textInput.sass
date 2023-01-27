@@ -1,9 +1,17 @@
 @use '../../theme' as t
 
+.text-input-header
+  display: flex
+  justify-content: space-between
+
 .text-input-label
   display: block
   color: t.$marine-blue
   font-size: .8rem 
+
+.text-input-error-msg
+  color: t.$strawberry-red
+  font-weight: 700
 
 .text-input
   font-size: .9rem
@@ -11,8 +19,20 @@
   width: 100%
   border: 1px solid t.$light-gray
   outline: none
+  cursor: pointer
   border-radius: 4px
 
 .text-input::placeholder
   font-weight: 700
   color: t.$cool-gray
+
+.text-input-error
+  border-color: t.$strawberry-red
+
+@media only screen and (min-width: t.$mobile-breakpoint)
+  .text-input-header
+    margin-bottom: 5px
+  
+  .text-input
+    border-radius: 6px
+    

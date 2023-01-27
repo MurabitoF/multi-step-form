@@ -3,7 +3,7 @@ import './button.sass'
 
 const Button = ({ label, onClick, primary, ...rest }) => {
   return (
-    <button className={`button ${primary && 'button-primary'}`} {...rest}>
+    <button className={`button ${primary && 'button-primary'}`} onClick={onClick} {...rest}>
       {label}
     </button>
   )

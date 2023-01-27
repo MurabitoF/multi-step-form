@@ -1,0 +1,32 @@
+@use '../../../theme' as t
+
+.card-content-container
+  display: flex
+  gap: 1em
+
+.card-container img
+  width: fit-content
+  height: fit-content
+
+.card-content
+  display: flex
+  flex-direction: column
+  gap: .25em
+
+.card-content h3
+  font-weight: 500
+  font-size: 1rem
+  color: t.$marine-blue
+
+.card-content .card-price
+  color: t.$cool-gray
+  font-size: .9em
+
+.yearly-discount
+  color: t.$marine-blue
+  font-size: .8em
+
+@media only screen and (min-width: t.$mobile-breakpoint)
+  .card-content-container
+    flex-direction: column
+    gap: 2.75em

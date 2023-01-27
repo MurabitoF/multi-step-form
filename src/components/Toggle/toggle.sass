@@ -1,0 +1,63 @@
+@use '../../theme' as t
+
+.toggle-container
+  display: flex
+  justify-content: center
+  align-items: center
+  padding: 1em
+  border-radius: 8px
+  background-color: t.$alabaster
+
+.toggle-label
+  color: t.$marine-blue
+  font-size: .9rem
+  font-weight: 500
+  -webkit-transition: .4s
+  transition: .4s
+
+.toggle-label-inactive
+  color: t.$cool-gray
+  -webkit-transition: .4s
+  transition: .4s
+
+
+.toggle-switch
+  position: relative
+  display: inline-block
+  margin: 0 1.5em
+  width: 38px
+  height: 20px
+
+.toggle-container input
+  opacity: 0
+  width: 0
+  height: 0
+
+.toggle-slider
+  position: absolute
+  cursor: pointer
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  background-color: t.$marine-blue
+  -webkit-transition: .4s
+  transition: .4s
+  border-radius: 9999px
+
+.toggle-slider:before
+  position: absolute
+  content: ""
+  height: 12px
+  width: 12px
+  left: 4px
+  bottom: 4px
+  background-color: t.$alabaster
+  border-radius: 50%
+  -webkit-transition: .4s
+  transition: .4s
+
+input:checked + .toggle-slider:before
+  -webkit-transform: translateX(18px)
+  -ms-transform: translateX(18px)
+  transform: translateX(18px)

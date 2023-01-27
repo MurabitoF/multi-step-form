@@ -1,23 +1,25 @@
 import React from 'react'
 import './textInput.sass'
 
-const TextInput = ({ label, type = 'text', name, placeholder, value, ...rest }) => {
+const TextInput = React.forwardRef(({ label, name, placeholder, errors, ...rest }, ref) => {
   return (
     <div className='text-input-container'>
-      <label htmlFor={name} className='text-input-label'>
-        {label}
-      </label>
+      <div className='text-input-header'>
+        <label htmlFor={name} className='text-input-label'>
+          {label}
+        </label>
+        {errors && <small className='text-input-error-msg'>{errors.message}</small>}
+      </div>
       <input
-        className='text-input'
-        type={type}
+        className={`text-input ${errors && 'text-input-error'}`}
         name={name}
         id={name}
         placeholder={placeholder}
-        value={value}
+        ref={ref}
         {...rest}
       />
     </div>
   )
-}
+})
 
 export default TextInput

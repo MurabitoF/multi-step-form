@@ -4,7 +4,6 @@
   background-color: t.$white
   padding: 2.25em 1.5em
   width: 343px
-  height: 376px
   border-radius: t.$border-radius
   @include t.box-shadow
   position: relative
@@ -15,11 +14,14 @@
   justify-content: space-between
 
 .form-control h1
+  font-size: 2rem
   color: t.$marine-blue
 
-.form-control p
+.form-control .form-description
   color: t.$cool-gray
   line-height: 1.5
+  margin-top: 1em
+  margin-bottom: 1.5em 
 
 .form-control form
   display: flex
@@ -31,6 +33,46 @@
   height: 72px
   padding: 1em
   background-color: t.$white
-  position: absolute
+  position: fixed
   bottom: 0
-  display: grid
+  left: 0
+  display: flex
+  justify-content: space-between
+
+.only-button
+  justify-content: flex-end
+
+.form-cards
+  border: none
+  display: flex
+  flex-direction: column
+  gap: .75em
+
+@media only screen and (min-width: t.$mobile-breakpoint) 
+  .form-control-container
+    padding: 0 5em
+    width: 70%
+    position: relative
+  
+  .form-control
+    position: static
+    box-shadow: none
+    background-color: transparent
+    width: 100%
+
+  .form-control .form-description
+    margin-bottom: 2.75em 
+
+  .form-control form
+    gap: 1.625em
+
+  .form-buttons
+    // margin-top: 3.25em
+    position: absolute
+    left: 11%
+    width: 75%
+  
+  .form-cards
+    flex-direction: row
+  
+

@@ -1,42 +1,41 @@
-import React from 'react'
-import Button from '../Button'
-import TextInput from '../TextInput'
+import React, { useState } from 'react'
+import PersonalInfo from './FormViews/PersonalInfo'
+import SelectPlan from './FormViews/SelectPlan'
 import './formControl.sass'
 
-const FormControl = () => {
-  return (
-    <>
-      <section className='form-control'>
-        <h1>Personal info</h1>
-        <p>
-          Please provide your name, email address, and phone number.
-        </p>
-        <form>
-          <TextInput
-            label='Name'
-            placeholder='e.g. Stephen King'
-            name='name'
-            value=''
-          />
-          <TextInput
-            label='Email Address'
-            placeholder='e.g. stephenking@lorem.com'
-            name='email'
-            value=''
-          />
-          <TextInput
-            label='Phone Number'
-            placeholder='e.g. +1 234 567 890'
-            name='phoneNumber'
-            value=''
-          />
-        </form>
-      </section>
+const initialState = {
+  1: {
+    name: '',
+    emailAddress: '',
+    phoneNumber: ''
+  },
+  2: {
+    planSelected: 'arcade',
+    yearly: false
+  }
+}
 
-      <section className='form-buttons'>
-        <Button label='Next Step' primary style={{ justifySelf: 'flex-end' }} />
-      </section>
-    </>
+const FormControl = ({ stage, setStage }) => {
+  const [formData, setFormData] = useState(initialState)
+
+  const handleSubmitStages = (data) => {
+    formData[stage] = data
+    setFormData(prev => ({ ...prev }))
+    setStage(prev => (prev + 1))
+  }
+
+  if (stage === 2) {
+    return (
+      <div className='form-control-container'>
+        <SelectPlan onSubmit={handleSubmitStages} initialState={formData[2]} setStage={() => setStage(prev => (prev - 1))} />
+      </div>
+    )
+  }
+
+  return (
+    <div className='form-control-container'>
+      <PersonalInfo onSubmit={handleSubmitStages} initialState={formData[1]} />
+    </div>
   )
 }
 

@@ -1,0 +1,21 @@
+@use '../../theme' as t
+  
+.card-input-radio
+  opacity: 0
+  width: 0
+  height: 0
+
+.card-container
+  border: 1px solid t.$light-gray
+  border-radius: t.$border-radius
+  padding: 1em
+  display: flex
+  cursor: pointer
+
+.card-container:has(#input:checked)
+  background-color: t.$alabaster
+  border-color: t.$purplish-blue
+
+@media only screen and (min-width: t.$mobile-breakpoint)
+  .card-container
+    width: 100%
