@@ -3,7 +3,7 @@ import React from 'react'
 const Finished = () => {
   return (
     <section className='form-control centered finish-container'>
-      <img src='src/assets/icon-thank-you.svg' alt='Thank you icon' className='finish-icon' />
+      <img src='./icon-thank-you.svg' alt='Thank you icon' className='finish-icon' />
       <h1 className='finish-title'>Thank you!</h1>
       <p className='finish-text'>
         Thanks for confirming your suscription!
