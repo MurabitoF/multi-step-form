@@ -5,7 +5,7 @@ import InputCard from '../../InputCard'
 import CardContent from '../../InputCard/CardContent'
 import Toggle from '../../Toggle'
 
-const SelectPlan = ({ onSubmit, initialState, setStage }) => {
+const SelectPlan = ({ onSubmit, initialState, setStage, prices }) => {
   const { register, handleSubmit, watch, reset } = useForm({
     defaultValues: initialState
   })
@@ -17,23 +17,32 @@ const SelectPlan = ({ onSubmit, initialState, setStage }) => {
     setStage()
   }
 
+  const finishStage = (data) => {
+    const pricesSelected = prices[data.planSelected]
+    const mappedData = {
+      ...data,
+      price: pricesSelected[isYearly ? 'yearly' : 'monthly']
+    }
+    onSubmit(mappedData)
+  }
+
+  const pricesData = Object.entries(prices)
+
   return (
     <section className='form-control'>
       <h1>Select your plan</h1>
       <p className='form-description'>
         You have the option of monthly or yearly billing.
       </p>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(finishStage)}>
         <fieldset className='form-cards flex-row'>
-          <InputCard type='radio' {...register('planSelected')} value='arcade'>
-            <CardContent title='Arcade' price={{ monthly: 9, yearly: 90 }} isYearly={isYearly} />
-          </InputCard>
-          <InputCard type='radio' {...register('planSelected')} value='advanced'>
-            <CardContent title='Advanced' price={{ monthly: 9, yearly: 90 }} isYearly={isYearly} />
-          </InputCard>
-          <InputCard type='radio' {...register('planSelected')} value='pro'>
-            <CardContent title='Pro' price={{ monthly: 9, yearly: 90 }} isYearly={isYearly} />
-          </InputCard>
+          {pricesData.map(price => {
+            return (
+              <InputCard key={price[0]} type='radio' {...register('planSelected')} value={price[0]}>
+                <CardContent title={price[0]} price={price[1]} isYearly={isYearly} />
+              </InputCard>
+            )
+          })}
         </fieldset>
 
         <Toggle labelOff='Monthly' labelOn='Yearly' isYearly={isYearly} {...register('yearly')} />

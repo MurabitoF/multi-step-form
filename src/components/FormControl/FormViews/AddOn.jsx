@@ -4,7 +4,7 @@ import Button from '../../Button'
 import InputCard from '../../InputCard'
 import CardContent from '../../InputCard/CardContent'
 
-const AddOn = ({ onSubmit, initialState, setStage, isYearly }) => {
+const AddOn = ({ onSubmit, initialState, setStage, prices, isYearly }) => {
   const { register, handleSubmit, reset } = useForm({
     defaultValues: initialState
   })
@@ -14,38 +14,39 @@ const AddOn = ({ onSubmit, initialState, setStage, isYearly }) => {
     setStage()
   }
 
+  const finishStage = (data) => {
+    const mappedData = pricesData.map(addon => {
+      return [
+        addon[0],
+        {
+          selected: data[addon[0]],
+          price: data[addon[0]] ? (addon[1].prices[isYearly ? 'yearly' : 'monthly']) : 0
+        }
+      ]
+    })
+    onSubmit(Object.fromEntries(mappedData))
+  }
+
+  const pricesData = Object.entries(prices)
+
   return (
     <section className='form-control'>
       <h1>Pick add-ons</h1>
       <p className='form-description'>
         Add-ons help enhance your gaming experience.
       </p>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(finishStage)}>
         <fieldset className='form-cards'>
-          <InputCard type='checkbox' {...register('onlineService')}>
-            <CardContent
-              title='Online service'
-              price={{ monthly: 1, yearly: 10 }}
-              description='Access to multiplayer games'
-              isYearly={isYearly}
-            />
-          </InputCard>
-          <InputCard type='checkbox' {...register('largerStorage')}>
-            <CardContent
-              title='Larger storage'
-              price={{ monthly: 2, yearly: 20 }}
-              description='Extra 1TB of cloud save'
-              isYearly={isYearly}
-            />
-          </InputCard>
-          <InputCard type='checkbox' {...register('customizableProfile')}>
-            <CardContent
-              title='Customizable profile'
-              price={{ monthly: 2, yearly: 20 }}
-              description='Custom theme on your profile'
-              isYearly={isYearly}
-            />
-          </InputCard>
+          {pricesData.map(addon => (
+            <InputCard key={addon[0]} type='checkbox' {...register(addon[0])} checked={addon[1].selected}>
+              <CardContent
+                title={addon[1].title}
+                price={addon[1].prices}
+                description={addon[1].description}
+                isYearly={isYearly}
+              />
+            </InputCard>
+          ))}
         </fieldset>
 
         <section className='form-buttons'>
