@@ -8,7 +8,7 @@ const InputCard = React.forwardRef(({ children, type, value, ...rest }, ref) => 
       <input
         id='input'
         type={type}
-        className={`${type === 'radio' && 'card-input-radio'}`}
+        className={`${type === 'radio' ? 'card-input-radio' : 'card-input-checkbox'}`}
         value={value}
         ref={ref}
         {...rest}

@@ -24,7 +24,7 @@ const SelectPlan = ({ onSubmit, initialState, setStage }) => {
         You have the option of monthly or yearly billing.
       </p>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <fieldset className='form-cards'>
+        <fieldset className='form-cards flex-row'>
           <InputCard type='radio' {...register('planSelected')} value='arcade'>
             <CardContent title='Arcade' price={{ monthly: 9, yearly: 90 }} isYearly={isYearly} />
           </InputCard>

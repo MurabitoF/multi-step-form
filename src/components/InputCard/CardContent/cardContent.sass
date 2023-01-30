@@ -1,8 +1,17 @@
 @use '../../../theme' as t
 
 .card-content-container
-  display: flex
+  display: grid
+  grid-auto-flow: column
   gap: 1em
+  letter-spacing: -.5px
+
+
+.centered
+  align-items: center
+
+.full-width
+  width: 100%
 
 .card-container img
   width: fit-content
@@ -18,15 +27,33 @@
   font-size: 1rem
   color: t.$marine-blue
 
-.card-content .card-price
+.card-content h4
+  font-weight: 500
+  font-size: .95rem
+  color: t.$marine-blue
+
+.card-content .card-text-gray
   color: t.$cool-gray
-  font-size: .9em
+
+.small-text
+  font-size: .8rem
 
 .yearly-discount
   color: t.$marine-blue
-  font-size: .8em
+
+.card-addon-price
+  color: t.$purplish-blue
+  justify-self: flex-end
 
 @media only screen and (min-width: t.$mobile-breakpoint)
   .card-content-container
-    flex-direction: column
     gap: 2.75em
+  
+  .card-direction
+    grid-auto-flow: row
+
+  .card-content h4
+    font-size: 1rem
+
+  .small-text
+    font-size: .9rem
