@@ -47,6 +47,89 @@
   flex-direction: column
   gap: .75em
 
+.sumary-details-container
+  background-color: t.$alabaster
+  padding: 1.5em 1em
+  border-radius: 8px
+  
+
+.sumary-details-plan
+  width: 100%
+  border-bottom: 1px solid t.$light-gray
+  display: flex
+  justify-content: space-between
+  align-items: center
+
+.sumary-details-plan-content
+  margin-bottom: .75em
+
+.sumary-details-plan h4
+  font-size: .9rem
+  text-transform: capitalize
+  color: t.$marine-blue
+  font-weight: 500
+
+.sumary-plan-button
+  padding: 0
+  border: none
+  outline: none
+  background-color: transparent
+  color: t.$cool-gray
+  font-weight: 500
+  text-decoration: underline
+  text-decoration-thickness: 2px
+
+.sumary-plan-price
+  font-size: .9rem
+  color: t.$marine-blue
+
+.sumary-addon
+  display: flex
+  justify-content: space-between
+  margin-top: 1em
+  
+.sumary-addon span
+  color: t.$cool-gray
+  font-size: .95rem
+  letter-spacing: -.5px
+
+.sumary-addon .sumary-addon-price
+  color: t.$marine-blue
+
+.sumary-total
+  padding: 0 1em 
+  display: flex
+  justify-content: space-between
+  margin-top: 1em
+  
+.sumary-total span
+  color: t.$cool-gray
+  font-size: .95rem
+  letter-spacing: -.5px
+
+.sumary-total .sumary-total-price
+  font-size: 1rem
+  font-weight: 700
+  color: t.$purplish-blue
+
+.finish-container
+  padding: 5em 1.5em
+
+.finish-icon
+  width: 3.5em
+  height: 3.5em
+
+.form-control .finish-title
+  font-size: 1.5rem
+  margin-top: 1rem
+  margin-bottom: 1rem
+
+.finish-text
+  color: t.$cool-gray
+  line-height: 1.5
+  letter-spacing: .2px
+  text-align: center
+
 @media only screen and (min-width: t.$mobile-breakpoint) 
   .form-control-container
     padding: 0 5em
@@ -74,4 +157,11 @@
   .flex-row
     flex-direction: row
   
+  .sumary-details-container
+    padding: 1.5em
 
+  .sumary-total
+    padding: 0 1.5em
+
+  .sumary-total .sumary-total-price
+    font-size: 1.25rem

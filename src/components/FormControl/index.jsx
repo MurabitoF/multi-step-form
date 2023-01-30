@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import AddOn from './FormViews/AddOn'
+import Finished from './FormViews/Finished'
 import PersonalInfo from './FormViews/PersonalInfo'
 import SelectPlan from './FormViews/SelectPlan'
 import Sumary from './FormViews/Sumary'
@@ -34,17 +35,25 @@ const initialState = {
 
 const FormControl = ({ stage, setStage, prices }) => {
   const [formData, setFormData] = useState(initialState)
+  const [showFinishPanel, setShowFinishPanel] = useState(false)
 
   const handleSubmitStages = (data) => {
     formData[stage] = data
     setFormData(prev => ({ ...prev }))
     setStage(prev => (prev + 1))
-    console.log(formData)
   }
 
   const handleComplete = (data) => {
-    console.log(formData)
-    console.log(data)
+    const mappedFormData = {
+      personalInfo: formData[1],
+      plan: formData[2],
+      addOns: formData[3],
+      total: data
+    }
+
+    console.log('Sending data to api:', mappedFormData)
+
+    setShowFinishPanel(true)
   }
 
   const initialStateForAddOns = () => ({
@@ -54,12 +63,21 @@ const FormControl = ({ stage, setStage, prices }) => {
   })
 
   if (stage === 4) {
+    console.log(showFinishPanel)
+    if (showFinishPanel) {
+      return (
+        <div className='form-control-container'>
+          <Finished />
+        </div>
+      )
+    }
+
     return (
       <div className='form-control-container'>
         <Sumary
           handleComplete={handleComplete}
           formData={formData}
-          setStage={() => setStage(prev => (prev - 1))}
+          setStage={setStage}
           prices={prices}
         />
       </div>
