@@ -16,7 +16,7 @@ const CardContent = ({ type, isYearly, title, price, description, name }) => {
 
   return (
     <div className='card-content-container card-direction'>
-      <img src={`./${name}.svg`} alt={`${title} icon'`} />
+      <img src={`/icon-${name}.svg`} alt={`${title} icon'`} />
       <span className='card-content'>
         <h3>{title}</h3>
         <p className='card-text-gray small-text'>${isYearly ? `${price.yearly}/yr` : `${price.monthly}/mo`}</p>
